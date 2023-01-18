@@ -4,6 +4,7 @@ import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -35,12 +36,12 @@ public class AlertRabbit {
         }
     }
 
-    private static Properties load() throws Exception {
+    private static Properties load() {
         try (InputStream in = AlertRabbit.class.getClassLoader().getResourceAsStream("rabbit.properties")) {
             Properties pr = new Properties();
             pr.load(in);
             return pr;
-        } catch (Exception e) {
+        } catch (IOException e) {
             throw new IllegalArgumentException(e);
         }
     }
