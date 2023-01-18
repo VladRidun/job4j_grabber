@@ -40,6 +40,8 @@ public class AlertRabbit {
             Properties pr = new Properties();
             pr.load(in);
             return pr;
+        } catch (Exception e) {
+            throw new IllegalArgumentException(e);
         }
     }
 
