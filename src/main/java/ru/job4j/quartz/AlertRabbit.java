@@ -20,14 +20,17 @@ import static org.quartz.SimpleScheduleBuilder.*;
 
 public class AlertRabbit {
     private static final String SQL_INSERT = "insert into rabbit(created) values (?)";
+    private static Properties property;
 
     public static void main(String[] args) {
         try {
-            Connection cn = init();
+            Properties pr = load();
+            Connection cn = init(pr);
+            int time = Integer.parseInt(pr.getProperty("rabbit.interval"));
             Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
             scheduler.start();
             JobDataMap data = new JobDataMap();
-            data.put("connection", cn);
+            data.put("cn", cn);
             JobDetail job = newJob(Rabbit.class)
                     .usingJobData(data)
                     .build();
@@ -46,23 +49,24 @@ public class AlertRabbit {
         }
     }
 
-    private static Connection init() {
-        Connection cn = null;
-        try (InputStream in = new FileInputStream("app.properties")) {
-            Properties config = new Properties();
-            config.load(in);
-            Class.forName(config.getProperty("driver-class-name"));
-                cn =  DriverManager.getConnection(
-                    config.getProperty("url"),
-                    config.getProperty("username"),
-                    config.getProperty("password")
-            );
-        } catch (SQLException | IOException e) {
+    private static Properties load() {
+        try (InputStream in = AlertRabbit.class.getClassLoader().getResourceAsStream("rabbit.properties")) {
+            Properties pr = new Properties();
+            pr.load(in);
+            return pr;
+        } catch (IOException e) {
             throw new IllegalStateException(e);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
-        return cn;
+    }
+
+    private static Connection init(Properties property) throws ClassNotFoundException, SQLException {
+        Properties config = property;
+        Class.forName(config.getProperty("driver-class-name"));
+        return DriverManager.getConnection(
+                config.getProperty("url"),
+                config.getProperty("username"),
+                config.getProperty("password")
+        );
     }
 
     public static void put(Connection cn) {
