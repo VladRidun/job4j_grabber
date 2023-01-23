@@ -34,7 +34,6 @@ public class HabrCareerParse {
                 HabrCareerDateTimeParser feedparser = new HabrCareerDateTimeParser();
                 LocalDateTime dateStr = (feedparser.parse(date.attr("datetime")));
                 String link = String.format("%s%s", SOURCE_LINK, linkElement.attr("href"));
-
                 System.out.printf("%s %s %s%n", vacancyName, link, dateStr);
             });
         }
