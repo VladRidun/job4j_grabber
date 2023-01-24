@@ -12,16 +12,16 @@ class HabrCareerDateTimeParserTest {
 
     @Test
     void parseWhenTrue() {
-        var date ="2023-01-24T08:51:58+03:00";
-        LocalDateTime localDateTime = LocalDateTime.of(2023, Month.JANUARY,24,8,51,58);
+        var date = "2023-01-24T08:51:58+03:00";
+        LocalDateTime localDateTime = LocalDateTime.of(2023, Month.JANUARY, 24, 8, 51, 58);
         HabrCareerDateTimeParser habrTimeParser = new HabrCareerDateTimeParser();
         assertTrue(localDateTime.equals(habrTimeParser.parse(date)));
     }
 
     @Test
     void parseWhenFalse() {
-        var date ="2023-01-24T08:51:58+03:00";
-        LocalDateTime localDateTime = LocalDateTime.of(2023, Month.JANUARY,24,8,51);
+        var date = "2023-01-24T08:51:58+03:00";
+        LocalDateTime localDateTime = LocalDateTime.of(2023,  Month.JANUARY, 24, 8, 51);
         HabrCareerDateTimeParser habrTimeParser = new HabrCareerDateTimeParser();
         assertFalse(localDateTime.equals(habrTimeParser.parse(date)));
     }
