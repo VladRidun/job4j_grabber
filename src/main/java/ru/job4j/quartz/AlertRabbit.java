@@ -23,9 +23,8 @@ public class AlertRabbit {
     private static Properties property;
 
     public static void main(String[] args) {
-        try {
-            Properties pr = load();
-            Connection cn = init(pr);
+        Properties pr = load();
+        try (Connection cn = init(pr)) {
             int time = Integer.parseInt(pr.getProperty("rabbit.interval"));
             Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
             scheduler.start();
@@ -60,12 +59,11 @@ public class AlertRabbit {
     }
 
     private static Connection init(Properties property) throws ClassNotFoundException, SQLException {
-        Properties config = property;
-        Class.forName(config.getProperty("driver-class-name"));
+        Class.forName(property.getProperty("driver-class-name"));
         return DriverManager.getConnection(
-                config.getProperty("url"),
-                config.getProperty("username"),
-                config.getProperty("password")
+                property.getProperty("url"),
+                property.getProperty("username"),
+                property.getProperty("password")
         );
     }
 
