@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class HabrCareerDateTimeParserTest {
 
     @Test
-    void parseWhenTrue() {
+    void whenParseTrue() {
         var date = "2023-01-24T08:51:58+03:00";
         LocalDateTime localDateTime = LocalDateTime.of(2023, Month.JANUARY, 24, 8, 51, 58);
         HabrCareerDateTimeParser habrTimeParser = new HabrCareerDateTimeParser();
@@ -19,7 +19,7 @@ class HabrCareerDateTimeParserTest {
     }
 
     @Test
-    void parseWhenFalse() {
+    void whenParseFalse() {
         var date = "2023-01-24T08:51:58+03:00";
         LocalDateTime localDateTime = LocalDateTime.of(2023,  Month.JANUARY, 24, 8, 51);
         HabrCareerDateTimeParser habrTimeParser = new HabrCareerDateTimeParser();
