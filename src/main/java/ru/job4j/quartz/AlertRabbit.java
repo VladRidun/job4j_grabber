@@ -20,7 +20,6 @@ import static org.quartz.SimpleScheduleBuilder.*;
 
 public class AlertRabbit {
     private static final String SQL_INSERT = "insert into rabbit(created) values (?)";
-    private static Properties property;
 
     public static void main(String[] args) {
         Properties pr = load();
@@ -34,7 +33,7 @@ public class AlertRabbit {
                     .usingJobData(data)
                     .build();
             SimpleScheduleBuilder times = simpleSchedule()
-                    .withIntervalInSeconds(5)
+                    .withIntervalInSeconds(time)
                     .repeatForever();
             Trigger trigger = newTrigger()
                     .startNow()
