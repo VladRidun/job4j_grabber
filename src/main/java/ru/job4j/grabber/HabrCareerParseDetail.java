@@ -15,7 +15,7 @@ public class HabrCareerParseDetail {
 
     private String retrieveDescription(String link) throws IOException {
         Document document = Jsoup.connect(link).get();
-        Element titleElement = document.selectFirst(".faded-content__container");
+        Element titleElement = document.selectFirst(".vacancy-description__text");
         return  titleElement.text();
     }
 }
