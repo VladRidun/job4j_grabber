@@ -1,4 +1,4 @@
-    CREATE TABLE post (
+create table post (
       Id SERIAL PRIMARY KEY,
       name TEXT NOT NULL,
       text TEXT NOT NULL,
