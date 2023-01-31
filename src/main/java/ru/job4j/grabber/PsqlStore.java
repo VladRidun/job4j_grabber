@@ -105,13 +105,13 @@ public class PsqlStore implements Store {
             e.printStackTrace();
         }
         Post post1 = new Post("Java-разработчик / Java-developer", "https://career.habr.com/vacancies/1000109498", "«Передовые Платежные Решения»", LocalDateTime.now());
-        Post post2 = new Post("Java программист","https://career.habr.com/vacancies/1000101566" , "Sportmaster Lab", LocalDateTime.now());
-        Post post3 = new Post("Java Developer","https://career.habr.com/vacancies/1000119017" , "Газпромбанк", LocalDateTime.now());
+        Post post2 = new Post("Java программист", "https://career.habr.com/vacancies/1000101566", "Sportmaster Lab", LocalDateTime.now());
+        Post post3 = new Post("Java Developer", "https://career.habr.com/vacancies/1000119017", "Газпромбанк", LocalDateTime.now());
         PsqlStore psqlStore = new PsqlStore(cfg);
         psqlStore.save(post1);
         psqlStore.save(post2);
         psqlStore.save(post3);
-        System.out.println("Выполнение поиска по 3 индексу");
+        System.out.println("Выполнение поиска по индексу 3");
         System.out.println(psqlStore.findById(3));
         System.out.println("Выполнение поиска всех записей в таблице");
         psqlStore.getAll().forEach(System.out::println);
