@@ -12,7 +12,7 @@ import java.util.List;
 public class HabrCareerParse implements Parse {
     private static final String SOURCE_LINK = "https://career.habr.com";
     private static final String VACANCY_LINK = "/vacancies/java_developer";
-    private static final Integer PAGES_VALUE = 5;
+    private static final int PAGES_VALUE = 5;
     private final DateTimeParser dateTimeParser;
 
     public HabrCareerParse(DateTimeParser dateTimeParser) {
