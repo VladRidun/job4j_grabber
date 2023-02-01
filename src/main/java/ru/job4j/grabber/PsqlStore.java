@@ -12,6 +12,7 @@ public class PsqlStore implements Store {
     private static final String SQL_INSERT = "insert into post(name, text, link, created) values (?, ?, ?, ?) ON CONFLICT (link) DO NOTHING";
     private static final String SQL_FIND_ALL = "select * from post";
     private static final String SQL_FIND_BY_ID = "select * from post where id = ?";
+
     private Connection cn;
 
     public PsqlStore(Properties cfg) {
